@@ -26,7 +26,7 @@ class _MainPageState extends State<MainPage> {
     }
 
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Color(0xFF0D1717),
       body: Stack(
         children: [
           SingleChildScrollView(
@@ -52,7 +52,7 @@ class _MainPageState extends State<MainPage> {
                       ),
                       Spacer(),
                       SvgPicture.asset(
-                        'assets/icons/icon.svg',
+                        'assets/icons/ ',
                         height: screenHeight * 0.05, // Adjust icon size
                       ),
                     ],
