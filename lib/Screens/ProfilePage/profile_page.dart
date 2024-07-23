@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:web1/Screens/Accounts/login.dart';
 import 'package:web1/Screens/constants.dart';
 
@@ -12,7 +13,6 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: blc,
       appBar: AppBar(
@@ -32,20 +32,20 @@ class _ProfilePageState extends State<ProfilePage> {
         ],
       ),
       body: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(16.w), // Use ScreenUtil padding
         child: Column(
           children: [
             CircleAvatar(
-              radius: 40,
+              radius: 40.r, // Use ScreenUtil radius
               backgroundColor: gen,
-              child: Icon(Icons.remove_red_eye_outlined, size: 50, color: bord),
+              child: Icon(Icons.remove_red_eye_outlined, size: 50.sp, color: bord), // Use ScreenUtil size
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 10.h), // Use ScreenUtil height
             Text(
               'Jane Sodi',
-              style: TextStyle(color: gen2, fontSize: 24, fontWeight: FontWeight.bold),
+              style: TextStyle(color: gen2, fontSize: 24.sp, fontWeight: FontWeight.bold), // Use ScreenUtil fontSize
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 20.h), // Use ScreenUtil height
             Expanded(
               child: ListView(
                 children: [
@@ -69,17 +69,20 @@ class _ProfilePageState extends State<ProfilePage> {
                     trailing: Icon(Icons.arrow_forward_ios, color: Colors.white),
                     onTap: () {},
                   ),
-                  SizedBox(height: 20),
+                  SizedBox(height: 20.h), // Use ScreenUtil height
                   Center(
-                     child: GestureDetector(
+                    child: GestureDetector(
                       onTap: () {
-                            Navigator.push(
-                              context,
-                               MaterialPageRoute(builder: (context) => LoginPage()),
-                            );
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => LoginPage()),
+                        );
                       },
-                      child: Text("Log out", style: TextStyle(color: Colors.white),),
-                     ),
+                      child: Text(
+                        "Log out",
+                        style: TextStyle(color: Colors.white, fontSize: 16.sp), // Use ScreenUtil fontSize
+                      ),
+                    ),
                   ),
                 ],
               ),

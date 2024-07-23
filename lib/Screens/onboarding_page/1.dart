@@ -9,6 +9,7 @@ class OnBoard1 extends StatefulWidget {
   const OnBoard1({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _OnBoard1State createState() => _OnBoard1State();
 }
 
@@ -21,94 +22,29 @@ class _OnBoard1State extends State<OnBoard1> {
     gen3,
     gen4,
     gen5,
-    gen5,
   ];
 
   final List<Widget> onboardingPages = [
-    Container(
+    _buildOnboardingPage(
       color: gen2,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          SizedBox(height: 20.h),
-          Text(
-            'Welcome To\n SideQuest',
-            style: TextStyle(
-              fontSize: 24.sp,
-              fontWeight: FontWeight.bold,
-              fontFamily: "play",
-            ),
-            textAlign: TextAlign.center,
-          ),
-          Image.asset('Assets/Images/purp.png'),
-          SizedBox(height: 50.h),
-        ],
-      ),
+      imagePath: 'Assets/Images/purp.png',
+      title: 'Welcome To\n SideQuest',
     ),
-    Container(
+    _buildOnboardingPage(
       color: gen3,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          SizedBox(height: 20.h),
-          Text(
-            'Get Support In\n Your new\n Niche',
-            style: TextStyle(
-              fontSize: 24.sp,
-              fontWeight: FontWeight.bold,
-              fontFamily: "play",
-            ),
-            textAlign: TextAlign.center,
-          ),
-          Image.asset('Assets/Images/lad.png'),
-          SizedBox(height: 50.h),
-        ],
-      ),
+      imagePath: 'Assets/Images/lad.png',
+      title: 'Get Support In\n Your new\n Niche',
     ),
-    Container(
+    _buildOnboardingPage(
       color: gen4,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          SizedBox(height: 20.h),
-          Text(
-            'Explore More Features',
-            style: TextStyle(
-              fontSize: 24.sp,
-              fontWeight: FontWeight.bold,
-              fontFamily: "play",
-            ),
-            textAlign: TextAlign.center,
-          ),
-          Image.asset('Assets/Images/pr.png'),
-        ],
-      ),
+      imagePath: 'Assets/Images/pr.png',
+      title: 'Explore More Features',
     ),
-    Container(
+    _buildOnboardingPage(
       color: gen5,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          SizedBox(height: 20.h),
-          Text(
-            'Join Us Today!',
-            style: TextStyle(
-              fontSize: 24.sp,
-              fontWeight: FontWeight.bold,
-              fontFamily: "play",
-            ),
-            textAlign: TextAlign.center,
-          ),
-          Image.asset('Assets/Images/tr.png'),
-          SizedBox(height: 20.h),
-        ],
-      ),
+      imagePath: 'Assets/Images/tr.png',
+      title: 'Join Us Today!',
     ),
-    // Removed the redundant Container from the list
   ];
 
   @override
@@ -117,55 +53,6 @@ class _OnBoard1State extends State<OnBoard1> {
       backgroundColor: pageColors[_currentIndex],
       body: Column(
         children: [
-          // Buttons above the carousel
-          if (_currentIndex == onboardingPages.length - 1)
-            Padding(
-              padding: EdgeInsets.all(16.w),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => const LoginPage()),
-                      );
-                    },
-                    child: Container(
-                      height: 50.h,
-                      width: 180.w,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: bord, width: 3.w),
-                        borderRadius: BorderRadius.circular(50.r),
-                      ),
-                      child: Center(
-                        child: Text('Login', style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold)),
-                      ),
-                    ),
-                  ),
-                  SizedBox(width: 10.w),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => const SignupPage()),
-                      );
-                    },
-                    child: Container(
-                      height: 50.h,
-                      width: 180.w,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: bord, width: 3.w),
-                        borderRadius: BorderRadius.circular(50.r),
-                      ),
-                      child: Center(
-                        child: Text('SignUp', style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold)),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
           Expanded(
             child: CarouselSlider(
               items: onboardingPages,
@@ -183,30 +70,109 @@ class _OnBoard1State extends State<OnBoard1> {
               ),
             ),
           ),
+          if (_currentIndex == onboardingPages.length - 1)
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 20.h),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  _buildButton(
+                    text: 'Login',
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const LoginPage()),
+                      );
+                    },
+                  ),
+                  SizedBox(height: 10.h),
+                  _buildButton(
+                    text: 'SignUp',
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const SignupPage()),
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ),
           Padding(
             padding: EdgeInsets.only(bottom: 20.h),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: onboardingPages.asMap().entries.map((entry) {
+              children: List.generate(onboardingPages.length, (index) {
                 return GestureDetector(
-                  onTap: () => _carouselController.animateToPage(entry.key),
+                  onTap: () => _carouselController.animateToPage(index),
                   child: AnimatedContainer(
-                    duration: Duration(milliseconds: 300),
+                    duration: const Duration(milliseconds: 300),
                     width: 12.w,
                     height: 12.h,
                     margin: EdgeInsets.symmetric(vertical: 8.h, horizontal: 4.w),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: _currentIndex == entry.key
+                      color: _currentIndex == index
                           ? Colors.black
                           : Colors.black.withOpacity(0.4),
                     ),
                   ),
                 );
-              }).toList(),
+              }),
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  // Helper method to build onboarding page
+  static Widget _buildOnboardingPage({
+    required Color color,
+    required String imagePath,
+    required String title,
+  }) {
+    return Container(
+      color: color,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          SizedBox(height: 20.h),
+          Text(
+            title,
+            style: TextStyle(
+              fontSize: 24.sp,
+              fontWeight: FontWeight.bold,
+              fontFamily: "play",
+            ),
+            textAlign: TextAlign.center,
+          ),
+          SizedBox(height: 20.h),
+          Image.asset(imagePath),
+          SizedBox(height: 50.h),
+        ],
+      ),
+    );
+  }
+
+  // Helper method to build a button
+  Widget _buildButton({required String text, required VoidCallback onTap}) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        height: 50.h,
+        width: 180.w,
+        decoration: BoxDecoration(
+          border: Border.all(color: bord, width: 1.5.w),
+          borderRadius: BorderRadius.circular(5.0.r),
+        ),
+        child: Center(
+          child: Text(
+            text,
+            style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
+          ),
+        ),
       ),
     );
   }
