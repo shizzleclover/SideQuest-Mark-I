@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:web1/Screens/Accounts/login.dart';
 import 'package:web1/Screens/constants.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -19,7 +20,9 @@ class _ProfilePageState extends State<ProfilePage> {
         elevation: 0,
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
         actions: [
           IconButton(
@@ -68,10 +71,15 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                   SizedBox(height: 20),
                   Center(
-                    child: TextButton(
-                      onPressed: () {},
-                      child: Text('Log out', style: TextStyle(color: Colors.grey)),
-                    ),
+                     child: GestureDetector(
+                      onTap: () {
+                            Navigator.push(
+                              context,
+                               MaterialPageRoute(builder: (context) => LoginPage()),
+                            );
+                      },
+                      child: Text("Log out", style: TextStyle(color: Colors.white),),
+                     ),
                   ),
                 ],
               ),

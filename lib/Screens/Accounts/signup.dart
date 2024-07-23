@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:web1/Screens/Main%20Screens/main.dart';
@@ -15,65 +16,7 @@ class _SignupPageState extends State<SignupPage> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   bool _isLoading = false; // State variable for loading
-
-  // Future<void> _register() async {
-  //   setState(() {
-  //     _isLoading = true; // Show loading animation
-  //   });
-
-  //   final email = _emailController.text;
-  //   final password = _passwordController.text;
-
-  //   try {
-  //     final response = await http.post(
-  //       Uri.parse('http://192.168.1.10/user_auth/register.php'), // Use your local IP address
-  //       body: jsonEncode({
-  //         'email': email,
-  //         'password': password,
-  //       }),
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //     );
-
-  //     // Log the response body for debugging
-  //     print('Response status: ${response.statusCode}');
-  //     print('Response body: ${response.body}');
-
-  //     if (response.statusCode == 200) {
-  //       // Ensure the response is valid JSON
-  //       final result = jsonDecode(response.body);
-  //       if (result['success']) {
-  //         // Handle successful registration
-  //         Navigator.push(
-  //           context,
-  //           MaterialPageRoute(builder: (context) => MainPage()),
-  //         );
-  //       } else {
-  //         // Handle registration error
-  //         ScaffoldMessenger.of(context).showSnackBar(
-  //           SnackBar(content: Text(result['message'] ?? 'Registration failed')),
-  //         );
-  //       }
-  //     } else {
-  //       // Handle server error
-  //       ScaffoldMessenger.of(context).showSnackBar(
-  //         SnackBar(content: Text('Server error: ${response.statusCode}')),
-  //       );
-  //     }
-  //   } catch (e) {
-  //     // Handle any other errors
-  //     ScaffoldMessenger.of(context).showSnackBar(
-  //       SnackBar(content: Text('Error: $e')),
-  //     );
-  //     print('Error: $e');
-  //   } finally {
-  //     setState(() {
-  //       _isLoading = false; // Hide loading animation
-  //     });
-  //   }
-  // }
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,7 +27,7 @@ class _SignupPageState extends State<SignupPage> {
             child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 200.0, left: 50.0, right: 50.0),
+                  padding: EdgeInsets.only(top: 200.h, left: 50.w, right: 50.w),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -93,37 +36,37 @@ class _SignupPageState extends State<SignupPage> {
                         style: TextStyle(
                           color: Colors.white,
                           fontFamily: 'play',
-                          fontSize: 30,
+                          fontSize: 30.sp,
                         ),
                         textAlign: TextAlign.center,
                       ),
-                      SizedBox(height: 100),
+                      SizedBox(height: 50.h),
                       Padding(
-                        padding: const EdgeInsets.only(right: 240.0),
+                        padding: EdgeInsets.only(right: 220.w),
                         child: Text('Email', style: TextStyle(color: Colors.white)),
                       ),
                       Container(
-                        width: 340.0,
+                        width: 340.w,
                         child: TextFormField(
                           controller: _emailController,
                           decoration: InputDecoration(
                             filled: true,
                             fillColor: Colors.white,
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(5.0),
+                              borderRadius: BorderRadius.circular(5.0.r),
                               borderSide: BorderSide.none,
                             ),
-                            contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                            contentPadding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
                           ),
                         ),
                       ),
-                      SizedBox(height: 20),
+                      SizedBox(height: 20.h),
                       Padding(
-                        padding: const EdgeInsets.only(right: 240.0),
+                        padding: EdgeInsets.only(right: 200.w),
                         child: Text('Password', style: TextStyle(color: Colors.white)),
                       ),
                       Container(
-                        width: 340,
+                        width: 340.w,
                         child: TextFormField(
                           controller: _passwordController,
                           decoration: InputDecoration(
@@ -131,31 +74,31 @@ class _SignupPageState extends State<SignupPage> {
                             filled: true,
                             fillColor: Colors.white,
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(5.0),
+                              borderRadius: BorderRadius.circular(5.0.r),
                               borderSide: BorderSide.none,
                             ),
-                            contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                            contentPadding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
                           ),
                           obscureText: true,
                         ),
                       ),
-                      SizedBox(height: 30),
+                      SizedBox(height: 30.h),
                       GestureDetector(
                         onTap: () {
-                               Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) =>  MainPage()),
-                    );
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => MainPage()),
+                          );
                         },
                         child: Container(
-                          height: 54,
+                          height: 54.h,
                           width: double.infinity,
                           decoration: BoxDecoration(
                             color: gen,
-                            borderRadius: BorderRadius.circular(5),
+                            borderRadius: BorderRadius.circular(5.0.r),
                           ),
                           child: Center(
-                            child: Text('Register', style: TextStyle(fontFamily: ""),),
+                            child: Text('Register', style: TextStyle(fontFamily: "", fontSize: 16.sp)),
                           ),
                         ),
                       )
@@ -177,4 +120,3 @@ class _SignupPageState extends State<SignupPage> {
     );
   }
 }
-// returning err no 110 from the api
