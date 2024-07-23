@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:web1/Screens/Main%20Screens/main.dart';
+import 'package:web1/Screens/Main%20Screens/searchpage.dart';
 
 class CustomBottomAppBar extends StatelessWidget {
   final Color backgroundColor;
@@ -24,7 +26,7 @@ class CustomBottomAppBar extends StatelessWidget {
               color: backgroundColor,
               borderRadius: BorderRadius.circular(50),
               boxShadow: [
-                BoxShadow(
+                 BoxShadow(
                   color: Colors.black26,
                   blurRadius: 10,
                   spreadRadius: 1,
@@ -38,11 +40,23 @@ class CustomBottomAppBar extends StatelessWidget {
               children: [
                 IconButton(
                   icon: Icon(Icons.home, color: Colors.white),
-                  onPressed: () => onIconTap(0),
+                  onPressed: () {
+                      onIconTap(0);
+                           Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => MainPage()),
+                    );
+                  }
                 ),
                 IconButton(
                   icon: Icon(Icons.search, color: Colors.white),
-                  onPressed: () => onIconTap(1),
+                  onPressed: () {
+                      onIconTap(1);
+                           Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Searchpage()),
+                    );
+                  } 
                 ),
                 IconButton(
                   icon: Icon(Icons.notifications, color: Colors.white),
@@ -51,6 +65,7 @@ class CustomBottomAppBar extends StatelessWidget {
                 IconButton(
                   icon: Icon(Icons.message, color: Colors.white),
                   onPressed: () => onIconTap(3),
+                  
                 ),
                 IconButton(
                   icon: Icon(Icons.account_circle, color: Colors.white),
