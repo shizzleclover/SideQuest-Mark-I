@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:web1/Screens/ProfilePage/profile_page.dart';
 import 'package:web1/Screens/Main%20Screens/main.dart';
 import 'package:web1/Screens/Main%20Screens/searchpage.dart';
@@ -6,28 +7,33 @@ import 'package:web1/Screens/Main%20Screens/searchpage.dart';
 class CustomBottomAppBar extends StatelessWidget {
   final Color backgroundColor;
   final Function(int) onIconTap;
+  final int selectedIndex; // New parameter for the selected index
 
   CustomBottomAppBar({
     required this.backgroundColor,
     required this.onIconTap,
+    required this.selectedIndex, // Initialize the parameter
   });
 
   @override
   Widget build(BuildContext context) {
+    // Ensure ScreenUtil is initialized in the main entry point
+    ScreenUtil.init(context);
+
     return Stack(
       children: [
         Positioned(
-          bottom: MediaQuery.of(context).padding.bottom,
+          bottom: ScreenUtil().bottomBarHeight,
           left: 0,
           right: 0,
           child: Container(
-            margin: EdgeInsets.all(16),
-            padding: EdgeInsets.symmetric(horizontal: 16),
+            margin: EdgeInsets.all(16.w),
+            padding: EdgeInsets.symmetric(horizontal: 16.w),
             decoration: BoxDecoration(
               color: backgroundColor,
-              borderRadius: BorderRadius.circular(50),
+              borderRadius: BorderRadius.circular(50.r),
               boxShadow: const [
-                  BoxShadow(
+                BoxShadow(
                   color: Colors.black26,
                   blurRadius: 10,
                   spreadRadius: 1,
@@ -35,50 +41,64 @@ class CustomBottomAppBar extends StatelessWidget {
                 ),
               ],
             ),
-            height: 70,
+            height: 70.h,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 IconButton(
-                  icon: const Icon(Icons.home, color: Colors.white),
+                  icon: Icon(
+                    Icons.home,
+                    color: selectedIndex == 0 ? Colors.white : Colors.grey,
+                  ),
                   onPressed: () {
-                      onIconTap(0);
-                           Navigator.push(
+                    onIconTap(0);
+                    Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => MainPage()),
                     );
-                  }
+                  },
                 ),
                 IconButton(
-                  icon: const Icon(Icons.search, color: Colors.white),
+                  icon: Icon(
+                    Icons.search,
+                    color: selectedIndex == 1 ? Colors.white : Colors.grey,
+                  ),
                   onPressed: () {
-                      onIconTap(1);
-                           Navigator.push(
+                    onIconTap(1);
+                    Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => Searchpage()),
                     );
-                  } 
+                  },
                 ),
                 IconButton(
-                  icon: const Icon(Icons.notifications, color: Colors.white),
-             onPressed: () {
-              onIconTap(2);
-             },
+                  icon: Icon(
+                    Icons.notifications,
+                    color: selectedIndex == 2 ? Colors.white : Colors.grey,
+                  ),
+                  onPressed: () {
+                    onIconTap(2);
+                  },
                 ),
                 IconButton(
-                  icon: const Icon(Icons.message, color: Colors.white),
+                  icon: Icon(
+                    Icons.message,
+                    color: selectedIndex == 3 ? Colors.white : Colors.grey,
+                  ),
                   onPressed: () => onIconTap(3),
-                  
                 ),
                 IconButton(
-                  icon: Icon(Icons.account_circle, color: Colors.white),
-                   onPressed: () {
-                onIconTap(2);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => ProfilePage()),
-                );
-               },
+                  icon: Icon(
+                    Icons.account_circle,
+                    color: selectedIndex == 4 ? Colors.white : Colors.grey,
+                  ),
+                  onPressed: () {
+                    onIconTap(4);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ProfilePage()),
+                    );
+                  },
                 ),
               ],
             ),

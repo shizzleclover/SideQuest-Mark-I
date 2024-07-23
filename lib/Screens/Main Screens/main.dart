@@ -14,6 +14,9 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
+
+    int _selectedIndex = 0;
+
     // Initialize ScreenUtil
     ScreenUtil.init(context);
 
@@ -23,7 +26,12 @@ class _MainPageState extends State<MainPage> {
       // if (index == 0) {
       //   Navigator.push(context, MaterialPageRoute(builder: (context) => FirstScreen()));
       // }
+       _selectedIndex = index;
     }
+
+    
+
+
 
     return Scaffold(
       backgroundColor: back,
@@ -312,6 +320,7 @@ class _MainPageState extends State<MainPage> {
              CustomBottomAppBar(
                backgroundColor: bot,
                onIconTap: _onIconTap,
+                selectedIndex: _selectedIndex,
              ),
            ],
          ),

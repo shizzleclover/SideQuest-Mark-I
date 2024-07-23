@@ -12,6 +12,7 @@ class Searchpage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    int _selectedIndex = 0;
     ScreenUtil.init(context);
 
     void _onIconTap (int index) {
@@ -20,6 +21,7 @@ class Searchpage extends StatelessWidget {
       // if (index == 0) {
       //   Navigator.push(context, MaterialPageRoute(builder: (context) => FirstScreen()));
       // }
+      _selectedIndex = index;
     }
     return Scaffold(
       backgroundColor: back,
@@ -52,7 +54,7 @@ class Searchpage extends StatelessWidget {
           ),
           CustomBottomAppBar(
             backgroundColor: bot,
-             onIconTap: _onIconTap,
+             onIconTap: _onIconTap, selectedIndex: _selectedIndex,
              )
         ],
       ),

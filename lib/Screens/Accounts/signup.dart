@@ -98,7 +98,7 @@ class _SignupPageState extends State<SignupPage> {
                             borderRadius: BorderRadius.circular(5.0.r),
                           ),
                           child: Center(
-                            child: Text('Register', style: TextStyle(fontFamily: "", fontSize: 16.sp)),
+                            child: Text('Create an account', style: TextStyle(fontFamily: "", fontSize: 16.sp)),
                           ),
                         ),
                       )

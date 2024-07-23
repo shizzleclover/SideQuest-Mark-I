@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "791724981417",
+    "project_id": "sidequest-ii",
+    "storage_bucket": "sidequest-ii.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:791724981417:android:7f4438b811349c83d2bdb8",
+        "android_client_info": {
+          "package_name": "com.example.web1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDinLsORwEUmcUAKFvMc_fe5LmdYFiT5FE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
