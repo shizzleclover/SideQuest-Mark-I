@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:web1/Screens/Main%20Screens/main.dart';
+import 'package:web1/Screens/Main%20Screens/searchpage.dart';
 
 class CustomBottomAppBar extends StatelessWidget {
   final Color backgroundColor;
@@ -25,7 +26,7 @@ class CustomBottomAppBar extends StatelessWidget {
               color: backgroundColor,
               borderRadius: BorderRadius.circular(50),
               boxShadow: [
-                BoxShadow(
+                 BoxShadow(
                   color: Colors.black26,
                   blurRadius: 10,
                   spreadRadius: 1,
@@ -38,23 +39,36 @@ class CustomBottomAppBar extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 IconButton(
-                  icon: SvgPicture.asset('Assets/Icons/'),
-                  onPressed: () => onIconTap(0),
+                  icon: Icon(Icons.home, color: Colors.white),
+                  onPressed: () {
+                      onIconTap(0);
+                           Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => MainPage()),
+                    );
+                  }
                 ),
                 IconButton(
-                  icon: SvgPicture.asset('Assets/Icons/'),
-                  onPressed: () => onIconTap(1),
+                  icon: Icon(Icons.search, color: Colors.white),
+                  onPressed: () {
+                      onIconTap(1);
+                           Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Searchpage()),
+                    );
+                  } 
                 ),
                 IconButton(
-                  icon: SvgPicture.asset('Assets/Icons/'),
+                  icon: Icon(Icons.notifications, color: Colors.white),
                   onPressed: () => onIconTap(2),
                 ),
                 IconButton(
-                  icon: SvgPicture.asset('Assets/Icons/'),
+                  icon: Icon(Icons.message, color: Colors.white),
                   onPressed: () => onIconTap(3),
+                  
                 ),
                 IconButton(
-                  icon: SvgPicture.asset('Assets/Icons/'),
+                  icon: Icon(Icons.account_circle, color: Colors.white),
                   onPressed: () => onIconTap(4),
                 ),
               ],

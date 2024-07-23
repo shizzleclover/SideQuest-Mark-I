@@ -12,7 +12,8 @@ Color blc = Color.fromRGBO(26, 26, 26, 1.0);
 Color bord2 = Color.fromRGBO(108, 108, 108, 1.0);
 Color cont2 = Color.fromRGBO(255, 130, 92, 1.0);
 Color bot = Color.fromRGBO(47, 47, 47, 1.0);
-
+Color bc = Color(0xFF8182D6);
+Color back = Color(0xFF0D1717);
 
 
 
