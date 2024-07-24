@@ -2,17 +2,14 @@
 import 'package:flutter/material.dart';
 import 'package:web1/Screens/splashpage.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:web1/firebase_options.dart';
+ 
 
- Future<void> main() async{
+ 
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform
-  );
+  await Firebase.initializeApp();
   runApp(MyApp());
- }
-
+}
  class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

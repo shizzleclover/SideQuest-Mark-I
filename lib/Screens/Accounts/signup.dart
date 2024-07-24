@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:http/http.dart' as http;
@@ -16,7 +17,31 @@ class _SignupPageState extends State<SignupPage> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   bool _isLoading = false; // State variable for loading
-  
+
+  Future<void> _register() async {
+    setState(() {
+      _isLoading = true; // Show loading indicator
+    });
+
+    try {
+      UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: _emailController.text, 
+        password: _passwordController.text,
+      );
+      print("User registered successfully");
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => MainPage()),
+      );
+    } catch (error) {
+      print("Error: ${error.toString()}");
+    } finally {
+      setState(() {
+        _isLoading = false; // Hide loading indicator
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,12 +109,7 @@ class _SignupPageState extends State<SignupPage> {
                       ),
                       SizedBox(height: 30.h),
                       GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => MainPage()),
-                          );
-                        },
+                        onTap: _register,
                         child: Container(
                           height: 54.h,
                           width: double.infinity,
